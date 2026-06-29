@@ -2,7 +2,7 @@
 
 # OCooldowns
 OCooldowns is a lightweight Minecraft plugin for managing player-based cooldowns with API support, events, and configurable settings.
--TEMP-
+
 ---
 ## Commands
 - `/ocooldowns reload`  

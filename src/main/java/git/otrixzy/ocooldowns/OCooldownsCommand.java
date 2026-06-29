@@ -28,7 +28,7 @@ public class OCooldownsCommand implements CommandExecutor {
                 plugin.reloadConfig();
                 long timeTaken = System.currentTimeMillis() - startTime;
 
-                String reloadMsg = plugin.getConfig().getString("messages.reloadMessage", "<prefix> &aoCooldowns Reloaded in <time>ms!");
+                String reloadMsg = plugin.getConfig().getString("messages.reload", "<prefix> &aoCooldowns Reloaded in <time>ms!");
 
                 reloadMsg = reloadMsg.replace("<prefix>", prefix)
                         .replace("<time>", String.valueOf(timeTaken));
@@ -38,7 +38,7 @@ public class OCooldownsCommand implements CommandExecutor {
 
             } else {
 
-                String noPermMsg = plugin.getConfig().getString("messages.permissionMessage", "<prefix> &cYou do not have permission to use this command.");
+                String noPermMsg = plugin.getConfig().getString("messages.insufficient_permission", "<prefix> &cYou do not have permission to use this command.");
                 noPermMsg = noPermMsg.replace("<prefix>", prefix);
 
                 sendMessage(sender, noPermMsg);

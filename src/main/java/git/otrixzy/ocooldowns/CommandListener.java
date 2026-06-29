@@ -32,8 +32,8 @@ public class CommandListener implements Listener {
 
         if (cooldownTime > 0) {
 
-            boolean useBypass = plugin.getConfig().getBoolean("config.useBypassPermission", false);
-            if (useBypass) {
+            boolean useBypass = plugin.getConfig().getBoolean("extra.disable_bypass_permissions", false);
+            if (!useBypass) {
                 if (player.hasPermission("ocooldowns.bypass." + command) || player.hasPermission("ocooldowns.bypass.*")) {
                     return;
                 }
@@ -44,7 +44,7 @@ public class CommandListener implements Listener {
                 int timeRemaining = plugin.getCooldownManager().getRemainingCooldown(player, command);
 
                 String prefix = plugin.getConfig().getString("messages.prefix", "");
-                String cooldownMsg = plugin.getConfig().getString("messages.cooldownMessage", "<prefix> &cYou must wait <time> seconds.");
+                String cooldownMsg = plugin.getConfig().getString("messages.cooldown", "<prefix> &cYou must wait <time> seconds.");
 
                 cooldownMsg = cooldownMsg.replace("<prefix>", prefix)
                         .replace("<time>", String.valueOf(timeRemaining))

@@ -1,21 +1,18 @@
-# useBypassPermission - If enabled, Allow's people with permission "ocooldowns.bypass.<command|*>" to bypass a specific command or all commands! (OP's Also Bypass All)
-config:
-  useBypassPermission: false
-
-# The prefix is the text at the beginning of the message, Eg. "[COOLDOWN] »"
-# The cooldown message is the text after the prefix "You must wait <time> seconds to use this command again!"
-
-# Variables: <time> - <command> - <prefix>
-# Prefix is optional, remove <prefix> from the message if you don't want the prefix to show up.
+# Placeholders: [<time>, <command>, <prefix>]
 messages:
-  prefix: '&8[&c&lCOOLDOWN&8]&r &8»&f'
-  cooldownMessage: '<prefix> You must wait &c<time>&f seconds to use this command again!'
-  permissionMessage: '<prefix> &cYou do not have permission to use this command.'
-  reloadMessage: '<prefix> &aoCooldowns Reloaded in <time>ms!'
+  prefix: '&8[&c&loCooldowns&8]&r &8»&f'
+  cooldown: '<prefix> You must wait &c<time>&f seconds to use this command again!'
+  insufficient_permission: '<prefix> &cYou do not have permission to use this command.'
+  reload: '<prefix> &aReloaded config in <time>ms!'
 
-# Add cooldowns to specific messages, use *: Int to add cooldown to all messages.
-# Eg. heal: 60
+extra:
+  # ocooldowns.bypass.[command_name|*]
+  # If enabled, permissions won't work and therefore nobody will bypass cooldowns (not even OPs)
+  disable_bypass_permissions: false
+
+# "heal: 60" adds a '60 second cooldown to the command "/heal"
 cooldowns:
+  #command_name: seconds
   heal: 60
   feed: 30
   spawn: 10

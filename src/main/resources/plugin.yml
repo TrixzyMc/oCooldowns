@@ -1,5 +1,13 @@
 name: oCooldowns
-version: '1.0-SNAPSHOT'
+version: '1.0'
 main: git.otrixzy.ocooldowns.OCooldowns
 api-version: '1.21'
 load: STARTUP
+
+commands:
+  ocooldowns:
+    description: Main command for OCooldowns
+    aliases:
+      - ocooldown
+      - cooldown
+      - cooldowns

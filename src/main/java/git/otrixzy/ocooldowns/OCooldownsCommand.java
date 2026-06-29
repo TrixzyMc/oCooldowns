@@ -5,6 +5,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class OCooldownsCommand implements CommandExecutor {
@@ -33,6 +34,10 @@ public class OCooldownsCommand implements CommandExecutor {
                 reloadMsg = reloadMsg.replace("<prefix>", prefix)
                         .replace("<time>", String.valueOf(timeTaken));
 
+                if (sender instanceof Player) {
+                    SoundUtils.playSound(plugin, (Player) sender, "reload");
+                }
+
                 sendMessage(sender, reloadMsg);
                 return true;
 
@@ -40,6 +45,10 @@ public class OCooldownsCommand implements CommandExecutor {
 
                 String noPermMsg = plugin.getConfig().getString("messages.insufficient_permission", "<prefix> &cYou do not have permission to use this command.");
                 noPermMsg = noPermMsg.replace("<prefix>", prefix);
+
+                if (sender instanceof Player) {
+                    SoundUtils.playSound(plugin, (Player) sender, "insufficient_permission");
+                }
 
                 sendMessage(sender, noPermMsg);
                 return true;

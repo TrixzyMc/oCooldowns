@@ -1,4 +1,28 @@
-# Placeholders: [<time>, <command>, <prefix>]
+![](https://raw.githubusercontent.com/TrixzyMc/images/refs/heads/main/ocooldown.png)
+
+# OCooldowns
+OCooldowns is a lightweight Minecraft plugin for managing player-based cooldowns with API support, events, and configurable settings.
+
+---
+## Commands
+- `/ocooldowns reload`  
+  Reloads the plugin configuration.
+
+- `/ocooldowns info`  
+  Displays plugin information.
+---
+
+## Default Config
+In-Config Placeholders available:
+- `<time>` → Remaining cooldown time
+- `<command>` → Command name
+- `<prefix>` → Config-defined message prefix
+
+---
+
+### Messages
+
+```yaml
 messages:
   general:
     prefix: '&8[&c&loCooldowns&8]&r &8»&f'
@@ -15,12 +39,28 @@ messages:
   completion:
     enabled: true
     message: "<prefix> You can now use &6<command>&f again."
+```
 
+---
+
+### Notifications
+
+Controls how cooldown messages are displayed.
+
+```yaml
 notifications:
   chat: true
   actionbar: true
   title: false
+```
 
+---
+
+### Sounds
+
+Configurable feedback sounds for different events.
+
+```yaml
 sounds:
   reload:
     enabled: true
@@ -39,15 +79,27 @@ sounds:
     sound: 'block.note_block.bass'
     volume: 1
     pitch: 1
+```
 
+---
+
+### Extra Settings
+
+```yaml
 extra:
   # ocooldowns.bypass.[command_name|*]
-  # If enabled, permissions won't work and therefore nobody will bypass cooldowns (not even OPs)
+  # If enabled, permission-based bypass is disabled (even OPs cannot bypass cooldowns)
   disable_bypass_permissions: false
+```
 
-# "heal: 60" adds a '60 second cooldown to the command "/heal"
+### Cooldowns
+
+Define command cooldown durations in seconds.
+
+```yaml
 cooldowns:
-  #command_name: seconds
+  # command_name: seconds
   heal: 60
   feed: 30
   spawn: 10
+```

@@ -1,0 +1,32 @@
+# Requires Skript-Reflect & oCooldowns Plugin
+import:
+	git.otrixzy.ocooldowns.OCooldowns
+	git.otrixzy.ocooldowns.api.events.PlayerCooldownBlockEvent
+	git.otrixzy.ocooldowns.api.events.PlayerCooldownStartEvent
+	git.otrixzy.ocooldowns.api.events.PlayerCooldownTriggerEvent
+	org.bukkit.plugin.java.JavaPlugin
+
+condition %player% (has|is on) [an] ocooldown for %string%:
+	check:
+		set {_manager} to JavaPlugin.getPlugin(OCooldowns.class).getCooldownManager()
+		continue if {_manager}.isOnCooldown(expr-1, expr-2) is true
+
+expression ocooldown [time] [remaining] of %player% for %string%:
+	get:
+		set {_manager} to JavaPlugin.getPlugin(OCooldowns.class).getCooldownManager()
+		return {_manager}.getRemainingCooldown(expr-1, expr-2)
+
+effect set ocooldown of %player% for %string% to %number% [seconds]:
+	trigger:
+		set {_manager} to JavaPlugin.getPlugin(OCooldowns.class).getCooldownManager()
+		{_manager}.setCooldown(expr-1, expr-2, expr-3)
+
+effect remove ocooldown of %player% for %string%:
+	trigger:
+		set {_manager} to JavaPlugin.getPlugin(OCooldowns.class).getCooldownManager()
+		{_manager}.removeCooldown(expr-1, expr-2)
+
+effect clear [all] ocooldowns of %player%:
+	trigger:
+		set {_manager} to JavaPlugin.getPlugin(OCooldowns.class).getCooldownManager()
+		{_manager}.clearCooldowns(expr-1)

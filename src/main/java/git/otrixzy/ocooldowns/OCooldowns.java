@@ -1,5 +1,8 @@
 package git.otrixzy.ocooldowns;
 
+import git.otrixzy.ocooldowns.api.OCooldownsAPI;
+import git.otrixzy.ocooldowns.internal.CommandListener;
+import git.otrixzy.ocooldowns.internal.CooldownManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,7 +13,10 @@ public final class OCooldowns extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        this.cooldownManager = new CooldownManager(this);
+
+        this.cooldownManager = new CooldownManager();
+
+        OCooldownsAPI.init(this);
 
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
 
@@ -18,14 +24,18 @@ public final class OCooldowns extends JavaPlugin {
             getCommand("ocooldowns").setExecutor(new OCooldownsCommand(this));
         }
 
-        String enableMsg = MessageUtils.convertLegacyToMiniMessage("&8[&coCooldowns&8] &8» &aoCooldowns plugin has been loaded.");
-        getServer().getConsoleSender().sendMessage(MiniMessage.miniMessage().deserialize(enableMsg));
+        sendConsole("&8[&coCooldowns&8] &8» &aoCooldowns plugin has been enabled.");
     }
 
     @Override
     public void onDisable() {
-        String disableMsg = MessageUtils.convertLegacyToMiniMessage("&8[&coCooldowns&8] &8» &coCooldowns plugin has been disabled.");
-        getServer().getConsoleSender().sendMessage(MiniMessage.miniMessage().deserialize(disableMsg));
+        sendConsole("&8[&coCooldowns&8] &8» &coCooldowns plugin has been disabled.");
+    }
+
+    private void sendConsole(String msg) {
+        String formatted = MessageUtils.convertLegacyToMiniMessage(msg);
+        getServer().getConsoleSender()
+                .sendMessage(MiniMessage.miniMessage().deserialize(formatted));
     }
 
     public CooldownManager getCooldownManager() {

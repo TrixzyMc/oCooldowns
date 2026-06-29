@@ -1,5 +1,5 @@
 name: oCooldowns
-version: '1.0-Preview'
+version: '1.0-Release'
 main: git.otrixzy.ocooldowns.OCooldowns
 api-version: '1.21'
 load: STARTUP
